@@ -1,0 +1,13 @@
+{
+    "name": "efrouting/laravel-cognito",
+    "description": "AWS Cognito package for PHP Laravel",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Efrouting\\LaravelCognito\\": "src/"
+        }
+    },
+    "require": {
+        "aws/aws-sdk-php": "^3.271"
+    }
+}
