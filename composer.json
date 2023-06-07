@@ -1,13 +1,39 @@
 {
     "name": "efrouting/laravel-cognito",
     "description": "AWS Cognito package for PHP Laravel",
+    "authors": [
+        {
+            "name": "N1chls",
+            "role": "Developer"
+        }
+    ],
+    "version": "1.0.0",
     "type": "library",
+    "prefer-stable": true,
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.1",
+        "aws/aws-sdk-php": "^3.271",
+        "firebase/php-jwt": "^6.5"
+    },
+    "require-dev": {
+        "illuminate/console": "^10.13",
+        "illuminate/support": "^10.13",
+        "phpunit/phpunit": "^10.2"
+    },
     "autoload": {
         "psr-4": {
             "Efrouting\\LaravelCognito\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
-    "require": {
-        "aws/aws-sdk-php": "^3.271"
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Efrouting\\LaravelCognito\\CognitoServiceProvider"
+            ]
+        }
     }
 }
