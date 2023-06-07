@@ -9,7 +9,6 @@ class CognitoClientSingleton
 {
     protected $cognitoClient;
 
-
     public function __construct()
     {
         $credentials = new Credentials(
@@ -25,10 +24,6 @@ class CognitoClientSingleton
 
     public function getClient(): CognitoIdentityProviderClient
     {
-        if (!$this->initialized) {
-            $this->init();
-        }
-
         return $this->cognitoClient;
     }
 }
