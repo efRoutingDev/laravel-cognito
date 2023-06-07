@@ -2,9 +2,13 @@
 
 namespace Efrouting\LaravelCognito\Http\Middleware;
 
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 class CognitoAuthorizationMiddleware extends BaseMiddleware
 {
-    public function handle($request, $next)
+    public function handle(Request $request, Closure $next) : Response
     {
         try
         {

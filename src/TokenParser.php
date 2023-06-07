@@ -4,7 +4,7 @@ namespace Efrouting\LaravelCognito;
 
 use Efrouting\LaravelCognito\Exceptions\InvalidTokenException;
 use Efrouting\LaravelCognito\Singletons\CognitoClientSingleton;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class TokenParser
 {
