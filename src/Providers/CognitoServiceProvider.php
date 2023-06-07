@@ -1,6 +1,6 @@
 <?php
 
-namespace Efrouting\LaravelCognito;
+namespace Efrouting\LaravelCognito\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

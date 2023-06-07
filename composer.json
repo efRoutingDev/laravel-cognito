@@ -32,7 +32,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Efrouting\\LaravelCognito\\CognitoServiceProvider"
+                "Efrouting\\LaravelCognito\\Providers\\CognitoServiceProvider"
             ]
         }
     }
