@@ -6,12 +6,18 @@ use Illuminate\Support\ServiceProvider;
 
 class CognitoServiceProvider extends ServiceProvider
 {
+    private $configPath = __DIR__.'/../../config/config.php';
+
     public function boot()
     {
+        //Publish config file
         $this->publishes([
-            __DIR__.'/../../config/cognito.php' => config_path('cognito.php'),
-        ], 'cognito-config');
+            $this->configPath => config_path('cognito.php'),
+        ], 'config');
 
+        $this->mergeConfigFrom($this->configPath, 'cognito');
+
+        //Register CognitoClientSingleton
         $this->app->singleton('cognito', function ($app) {
             return new \Efrouting\LaravelCognito\Singletons\CognitoClientSingleton();
         });
@@ -19,10 +25,6 @@ class CognitoServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__.'/../../config/cognito.php', 'cognito'
-        );
-
         //Initialize CognitoClientSingleton
         $cognitoClient = $this->app->make('cognito');
         $cognitoClient->init();
