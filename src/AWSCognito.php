@@ -40,4 +40,16 @@ class AWSCognito
 
         return $user;
     }
+
+    public function authorize()
+    {
+        $token = $this->parser->parse();
+        if(empty($token)) {
+            throw new NoTokenException();
+        }
+
+        $this->accessToken = $token;
+
+        return $this->getUser();
+    }
 }
