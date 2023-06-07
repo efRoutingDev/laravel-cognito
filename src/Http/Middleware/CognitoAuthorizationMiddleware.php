@@ -3,8 +3,8 @@
 namespace Efrouting\LaravelCognito\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Response;
+use Request;
+use Response;
 
 class CognitoAuthorizationMiddleware extends BaseMiddleware
 {
