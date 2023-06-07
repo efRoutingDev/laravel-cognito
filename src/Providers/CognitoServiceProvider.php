@@ -3,6 +3,7 @@
 namespace Efrouting\LaravelCognito\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Efrouting\LaravelCognito\Singletons\CognitoClientSingleton;
 
 class CognitoServiceProvider extends ServiceProvider
 {
@@ -18,15 +19,13 @@ class CognitoServiceProvider extends ServiceProvider
         $this->mergeConfigFrom($this->configPath, 'cognito');
 
         //Register CognitoClientSingleton
-        $this->app->singleton('cognito', function ($app) {
-            return new \Efrouting\LaravelCognito\Singletons\CognitoClientSingleton();
+        $this->app->singleton(CognitoClientSingleton::class, function ($app) {
+            return new CognitoClientSingleton();
         });
     }
 
     public function register()
     {
-        //Initialize CognitoClientSingleton
-        $cognitoClient = $this->app->make('cognito');
-        $cognitoClient->init();
+
     }
 }

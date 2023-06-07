@@ -7,27 +7,20 @@ use Aws\CognitoIdentityProvider\CognitoIdentityProviderClient;
 
 class CognitoClientSingleton
 {
-    private $initialized = false;
-
     protected $cognitoClient;
 
-    public function init(): void 
-    {
-        if ($this->initialized) {
-            return;
-        }
 
+    public function __construct()
+    {
         $credentials = new Credentials(
-            config('AWS_ACCESS_KEY_ID'), 
-            env('AWS_SECRET_ACCESS_KEY'), null);
+            config('cognito.aws_access_key'), 
+            config('cognito.aws_secret_key'), null);
 
         $this->cognitoClient = new CognitoIdentityProviderClient([
-            'version' => config('cognito.aws_version'),
-            'region' => config('cognito.aws_region'),
+            'version' => config('cognito.version'),
+            'region' => config('cognito.region'),
             'credentials' => $credentials,
         ]);
-
-        $this->initialized = true;
     }
 
     public function getClient(): CognitoIdentityProviderClient
