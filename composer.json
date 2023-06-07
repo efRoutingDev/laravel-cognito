@@ -1,6 +1,7 @@
 {
     "name": "efrouting/laravel-cognito",
     "description": "AWS Cognito package for PHP Laravel",
+    "homepage": "https://github.com/efRoutingDev/laravel-cognito",
     "authors": [
         {
             "name": "N1chls",

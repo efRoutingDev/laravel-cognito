@@ -9,8 +9,8 @@ class CognitoServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config/cognito.php' => config_path('cognito.php'),
-        ]);
+            __DIR__.'/../../config/cognito.php' => config_path('cognito.php'),
+        ], 'cognito-config');
 
         $this->app->singleton('cognito', function ($app) {
             return new \Efrouting\LaravelCognito\Singletons\CognitoClientSingleton();
@@ -20,7 +20,7 @@ class CognitoServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/config/cognito.php', 'cognito'
+            __DIR__.'/../../config/cognito.php', 'cognito'
         );
 
         //Initialize CognitoClientSingleton
