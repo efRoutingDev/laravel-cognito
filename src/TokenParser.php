@@ -31,6 +31,7 @@ class TokenParser
         }
 
         $token = str_ireplace($this->prefix, '', $token);
+        $token = trim($token);
 
         return $token;
     }

@@ -18,7 +18,7 @@ class AWSCognito
         $this->cognitoClient = $cognitoClient;
     }
 
-    protected function getUser()
+    protected function getUser() : \Aws\Result
     {
         if(empty($this->accessToken)) {
             throw new NoTokenException();
@@ -41,7 +41,7 @@ class AWSCognito
         return $user;
     }
 
-    public function authorize()
+    public function authorize() : \Aws\Result
     {
         $token = $this->parser->parse();
         if(empty($token)) {
@@ -49,7 +49,11 @@ class AWSCognito
         }
 
         $this->accessToken = $token;
-
         return $this->getUser();
+    }
+
+    public function refresh()
+    {
+
     }
 }
