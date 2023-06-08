@@ -5,7 +5,7 @@ use Efrouting\LaravelCognito\Models\Token;
 
 use Illuminate\Http\Request;
 
-trait CognitoUser
+trait CognitoUserTrait
 {
     public function GetUser(Request $request) : ?Token
     {

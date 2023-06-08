@@ -2,15 +2,17 @@
 
 namespace Efrouting\LaravelCognito\Traits;
 
+use Illuminate\Http\Request;
 use Efrouting\LaravelCognito\Models\EfToken;
+
 
 trait EfUserTrait
 {
-    use CognitoUser;
+    use CognitoUserTrait;
 
-    public function GetEfUser() : ?EfToken
+    public function GetEfUser(Request $request) : ?EfToken
     {
-        $user = $this->GetUser();
+        $user = $this->GetUser($request);
         if(empty($user)) {
             return null;
         }
