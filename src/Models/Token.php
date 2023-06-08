@@ -8,13 +8,18 @@ class Token
 {
     protected $accessToken;
     protected $refreshToken;
-    protected $attributes;
+    protected $attributes = array();
 
     public function __construct(Result $result, string $accessToken = "", string $refreshToken = "")
     {
         $this->accessToken = $accessToken;
         $this->refreshToken = $refreshToken;
-        $this->attributes = $result->toArray();
+
+        $data = $result->get('UserAttributes');
+        foreach($data as $attribute)
+        {
+            $this->attributes[$attribute['Name']] = $attribute['Value'];
+        }
     }
 
     public function Get(string $key)
