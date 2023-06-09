@@ -10,24 +10,23 @@ class AWSCognito
     private $parser;
     private $cognitoClient;
 
-    protected $accessToken;
-
     public function __construct(CognitoClientSingleton $cognitoClient, TokenParser $parser)
     {
         $this->parser = $parser;
         $this->cognitoClient = $cognitoClient;
     }
 
-    protected function getUser() : \Aws\Result
+    protected function getUser($token) : \Aws\Result
     {
-        if(empty($this->accessToken)) {
+        if(empty($token)) {
             throw new NoTokenException();
         }
 
         $user = null;
         try {
-            $user = $this->cognitoClient->getClient()->getUser([
-                'AccessToken' => $this->accessToken
+            $user = $this->cognitoClient->getClient()->adminGetUser([
+                'UserPoolId' => config('cognito.user_pool_id'),
+                'Username' => $token['username']
             ]);
         }
         catch (\Exception $e) {
@@ -53,8 +52,6 @@ class AWSCognito
             throw new InvalidTokenException();
         }
 
-        $this->accessToken = $token;
-
-        return $this->getUser();
+        return $this->getUser($decodedToken);
     }
 }

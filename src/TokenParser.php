@@ -29,7 +29,7 @@ class TokenParser
     {
         $key = $this->client->getJwkKey();
         if(empty($key)) {
-            throw new ConfigurationErrorException('Missing JWT key');
+            throw new ConfigurationErrorException('Missing JWK key');
         }
 
         try
