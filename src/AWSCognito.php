@@ -53,8 +53,6 @@ class AWSCognito
             throw new InvalidTokenException();
         }
 
-        $this->parser->decode($token);
-
         $this->accessToken = $token;
 
         return $this->getUser();

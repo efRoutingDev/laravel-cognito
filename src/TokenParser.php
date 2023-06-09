@@ -27,17 +27,14 @@ class TokenParser
 
     public function decode($token)
     {
-        $key = $this->client->getJwtKey();
+        $key = $this->client->getJwkKey();
         if(empty($key)) {
             throw new ConfigurationErrorException('Missing JWT key');
         }
 
-        $converter = new JWKConverter();
-        $pem = new Key($converter->toPEM($key), $key['alg']);
-
         try
         {
-            return (array)JWT::decode($token, $pem);
+            return (array)JWT::decode($token, $key);
         }
         catch(ExpiredException $e) {
             throw new ExpiredException();
