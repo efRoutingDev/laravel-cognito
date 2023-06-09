@@ -43,7 +43,12 @@ class CognitoClientSingleton
             return $this->jwtKey;
         }
 
-        $this->jwtKey = Http::get($this->jsonWebKeyUrl)->json();
+        $res = Http::get($this->jsonWebKeyUrl);
+        if(!$res->ok()) {
+            throw new \Exception('Unable to retrieve JWT key');
+        }
+
+        $this->jwtKey = $res->json();
         return $this->jwtKey;
     }
 
