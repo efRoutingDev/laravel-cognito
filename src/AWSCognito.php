@@ -48,12 +48,15 @@ class AWSCognito
             throw new NoTokenException();
         }
 
+        $decodedToken = $this->parser->decode($token);
+        if(empty($decodedToken)) {
+            throw new InvalidTokenException();
+        }
+
+        $this->parser->decode($token);
+
         $this->accessToken = $token;
+
         return $this->getUser();
-    }
-
-    public function refresh()
-    {
-
     }
 }

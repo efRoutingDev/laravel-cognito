@@ -8,6 +8,7 @@ use Aws\CognitoIdentityProvider\CognitoIdentityProviderClient;
 class CognitoClientSingleton
 {
     protected $cognitoClient;
+    private $jwtKey = null;
 
     public function __construct()
     {
@@ -25,5 +26,17 @@ class CognitoClientSingleton
     public function getClient(): CognitoIdentityProviderClient
     {
         return $this->cognitoClient;
+    }
+
+    public function getJwtKey()
+    {
+        if(!empty($this->jwtKey)) {
+            return $this->jwtKey;
+        }
+
+        $json = file_get_contents(config('cognito.jwt_key_path'));
+        $this->jwtKey = json_decode($json, true);
+
+        return $this->jwtKey;
     }
 }
