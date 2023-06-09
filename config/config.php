@@ -20,11 +20,4 @@ return [
     'user_pool_id'      => env('AWS_COGNITO_USER_POOL_ID'),
     'region'            => env('AWS_COGNITO_REGION', 'us-east-1'),
     'version'           => env('AWS_COGNITO_VERSION', 'latest'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Key configuration
-    |--------------------------------------------------------------------------
-    */
-    'jwt_key_path'     => env('JWT_KEY_PATH'),
 ];
