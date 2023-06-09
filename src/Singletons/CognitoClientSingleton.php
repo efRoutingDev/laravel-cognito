@@ -17,7 +17,7 @@ class CognitoClientSingleton
     public function __construct()
     {
         $region = config('cognito.region');
-        $userPoolId = config('cognito.uuser_pool_id');
+        $userPoolId = config('cognito.user_pool_id');
 
         $this->jsonWebKeyUrl = "https://cognito-idp.{$region}.amazonaws.com/{$userPoolId}/.well-known/jwks.json";
 
