@@ -19,10 +19,6 @@ class CognitoAuthorizationMiddleware extends BaseMiddleware
         {
             $userToken = $this->cognito->authorize();    
         }
-        catch (\Exception $e)
-        {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
         catch(ConfigurationErrorException $e)
         {
             return response()->json(['error' => 'Config error'], 401);
@@ -38,6 +34,10 @@ class CognitoAuthorizationMiddleware extends BaseMiddleware
         catch(AWSErrorException $e)
         {
             return response()->json(['error' => 'AWS error'], 401);
+        }
+        catch (\Exception $e)
+        {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
         
 
