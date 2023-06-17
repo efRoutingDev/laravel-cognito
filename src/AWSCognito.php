@@ -1,6 +1,7 @@
 <?php
 
 namespace Efrouting\LaravelCognito;
+use Efrouting\LaravelCognito\Exceptions\AWSErrorException;
 use Efrouting\LaravelCognito\Exceptions\InvalidTokenException;
 use Efrouting\LaravelCognito\Exceptions\NoTokenException;
 use Efrouting\LaravelCognito\Singletons\CognitoClientSingleton;
@@ -30,7 +31,7 @@ class AWSCognito
             ]);
         }
         catch (\Exception $e) {
-            throw new InvalidTokenException($e->getMessage());
+            throw new AWSErrorException($e->getMessage());
         }
 
         if(empty($user)) {

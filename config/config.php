@@ -21,6 +21,12 @@ return [
     'region'            => env('AWS_COGNITO_REGION', 'us-east-1'),
     'version'           => env('AWS_COGNITO_VERSION', 'latest'),
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Key configuration
+    |--------------------------------------------------------------------------
+    */
     'jwtKeys'           => [
         'keys'  => [
             [
