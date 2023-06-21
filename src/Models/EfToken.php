@@ -12,6 +12,11 @@ class EfToken
         $this->tokenModel = $token;
     }
 
+    public function GetUsername() : string
+    {
+        return $this->tokenModel->GetUsername();
+    }
+
     public function GetEmail() : string
     {
         return $this->tokenModel->Get('email');
