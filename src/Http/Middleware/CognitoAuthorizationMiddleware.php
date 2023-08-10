@@ -33,7 +33,7 @@ class CognitoAuthorizationMiddleware extends BaseMiddleware
         }
         catch(AWSErrorException $e)
         {
-            return response()->json(['error' => 'AWS error'], 401);
+            return response()->json(['error' => $e->getMessage()], 401);
         }
         catch (\Exception $e)
         {
