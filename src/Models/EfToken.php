@@ -36,4 +36,9 @@ class EfToken
     {
         return $this->tokenModel->Get('phone_number');
     }
+
+    public function GetRole() : string
+    {
+        return $this->tokenModel->Get('custom:role');
+    }
 }
